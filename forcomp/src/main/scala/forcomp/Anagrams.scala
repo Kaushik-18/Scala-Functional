@@ -35,7 +35,7 @@ object Anagrams {
     * Note: you must use `groupBy` to implement this method!
     */
   def wordOccurrences(w: Word): Occurrences = {
-    w.groupBy(x => x).mapValues(x => x.length()).toList.sorted
+    w.toLowerCase.groupBy(x => x).mapValues(x => x.length()).toList.sorted
   }
 
   /** Converts a sentence into its character occurrence list. */
@@ -102,7 +102,6 @@ object Anagrams {
   def subtract(x: Occurrences, y: Occurrences): Occurrences = {
     val (m, n) = x.partition(a => y.exists(check => check._1 == a._1))
     //m contains all keys in both x and y ;
-    print(m.zip(y))
     val zipper = for ((p1, p2) <- m.zip(y) if p1._2 != p2._2) yield (p1._1, p1._2 - p2._2)
     (n ::: zipper).sorted
   }
@@ -154,7 +153,7 @@ object Anagrams {
       }
       else {
         for (
-          combo <- combinations(occ);
+          combo <- combinations(occ) if dictionaryByOccurrences.keySet(combo);
           word <- dictionaryByOccurrences(combo);
           sen <- sentenceHelper(subtract(occ, combo))
         ) yield word :: sen
@@ -164,9 +163,8 @@ object Anagrams {
   }
 
   def main(args: Array[String]): Unit = {
-    val lard = List(('a', 1), ('d', 1), ('l', 1), ('r', 1))
-    val r = List(('r', 1), ('x', 2))
-    subtract(lard, r)
+    val testwords = List("linux","rule")
+    sentenceAnagrams(testwords)
   }
 }
 
