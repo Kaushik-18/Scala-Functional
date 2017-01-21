@@ -1,2 +1,12 @@
-Scala REPL :-
-For adding multiple lines of code we use :paste followed by code ,to exit paste mode Ctrl + D
+1) Scala REPL :-
+   For adding multiple lines of code we use :paste followed by code ,to exit paste mode Ctrl + D
+
+2) fold,foldLeft,foldRight
+
+3) Options : - 
+   way to handle null values
+   Option[A] is a container for type A with a value Some(A) or None
+   http://danielwestheide.com/blog/2012/12/19/the-neophytes-guide-to-scala-part-5-the-option-type.html
+
+
+
